@@ -18,9 +18,10 @@ module.exports = (grunt) ->
   # creation: http://gruntjs.com/creating-tasks
   grunt.registerMultiTask "say", "Executes the Mac OS say command with the specified string.", ->
     
-    if @target == 'message'
-      exec("say #{@data}")
-    else if @target == 'affirmation'
+    if @data.affirmation
       affirmation = AFFIRMATIONS[Math.round(Math.random()*(AFFIRMATIONS.length-1))] 
       exec("say #{affirmation}")
+    else if @data.message
+      exec("say #{data.message}")
 
+    grunt.log.writeln("say #{@target} #{@data}")
